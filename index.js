@@ -4,10 +4,19 @@ const bodyParser = require("body-parser");
 const todoRoutes = require("./routes/api");
 require("dotenv").config();
 
+const cors = require("cors");
+
+
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 mongoose
   .connect(process.env.MONGODB_URL)
